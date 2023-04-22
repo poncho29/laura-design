@@ -1,9 +1,9 @@
-import './styles/App.css'
+import { AppRouter } from './router/AppRouter'
 
 function App() {
   return (
     <>
-      <button className='btn btn-primary'>hola</button>
+      <AppRouter />
     </>
   )
 }
