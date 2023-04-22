@@ -1,6 +1,9 @@
+import { Navbar } from "../components/common";
 
 export const Home = () => {
   return (
-    <div>Hola</div>
+    <>
+      <Navbar />
+    </>
   )
 }

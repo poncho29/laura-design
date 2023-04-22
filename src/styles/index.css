@@ -13,4 +13,9 @@
 
 body {
   font-family: var(--spartan-font);
+  background-color: #F5F5F5;
+}
+
+.pointer {
+  cursor: pointer;
 }
