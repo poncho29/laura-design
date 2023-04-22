@@ -1,0 +1,16 @@
+:root {
+  --white: #FFFFFF;
+  --black: #000000;
+  --green: #C8D6AF;
+  --primary: #F2D0A4;
+  --secondary: #FFECCC;
+  --orange-ligth: #FFF9EF;
+
+  --content: 1200px;
+  --lato-font: 'Lato', sans-serif;
+  --spartan-font: 'League Spartan', sans-serif;
+}
+
+body {
+  font-family: var(--spartan-font);
+}
