@@ -42,7 +42,7 @@ export const SkillSection = () => {
           
           <ul className="programs">
             {programs.map((item: Program) => (
-              <li>
+              <li key={item.alt}>
                 <img
                   alt={item.alt}
                   src={width >= 992 ? item.imgDesktop : item.imgMobile}

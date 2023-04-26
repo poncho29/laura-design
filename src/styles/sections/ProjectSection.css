@@ -1,0 +1,74 @@
+.projects {
+  width: 100%;
+  background-color: var(--orange-ligth);
+  position: relative;
+}
+
+.projects .container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: .875rem 1.875rem;
+}
+
+.title-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 11.125rem;
+  height: 5.5rem;
+  border-radius: 50%;
+  top: -35px;
+  position: absolute;
+  background-color: var(--orange-ligth);
+}
+
+.title-section .title {
+  font-size: 1.25rem;
+  text-transform: uppercase;
+}
+
+/* PROJECT */
+.projects-group {
+  width: 100%;
+  margin: 1rem 0 1.25rem 0;
+  z-index: 10;
+  font-weight: normal;
+}
+
+/* Tabs */
+.projects-group .nav-tabs {
+  border: 0px;
+}
+
+.projects-group .nav-tabs .nav-item .nav-link {
+  color: var(--black);
+  border: 0px;
+  padding: 0.5rem;  
+}
+
+.projects-group .nav-tabs .nav-item .nav-link.active {
+  background-color: transparent;
+  border-bottom:3px solid var(--green);
+}
+
+@media (min-width: 992px) {
+  .title-section .title {
+    font-size: 1.5rem;
+  }
+
+  .projects .container {
+    display: flex;
+    justify-content: center;
+    padding: 2rem .875rem 3rem .875rem;
+  }
+
+  .projects-group .nav-tabs {
+    display: flex;
+    justify-content: center;
+  }
+
+  .projects-group .nav-tabs .nav-item .nav-link {
+    font-size: 1.5rem;
+  }
+}

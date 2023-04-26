@@ -1,5 +1,5 @@
 import { Navbar } from "../components/common";
-import { HeroSection, SkillSection } from "../section";
+import { HeroSection, ProjectSection, SkillSection } from "../section";
 
 export const Home = () => {
   return (
@@ -10,6 +10,8 @@ export const Home = () => {
         <HeroSection />
 
         <SkillSection />
+
+        <ProjectSection />
       </main>
     </>
   )
