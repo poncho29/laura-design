@@ -1,0 +1,99 @@
+.skills {
+  width: 100%;
+}
+
+.skills .container {
+  padding: 1.25rem 1.875rem 3.125rem 1.875rem;
+}
+
+.skills-group {
+  width: 100%;
+}
+
+.title-content {
+  width: inherit;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.title-content .title {
+  font-size: 1.125rem;;
+  text-transform: uppercase;
+}
+
+.programs {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: inherit;
+  max-width: 14.3125rem;
+  padding: 0;
+  list-style: none;
+  margin: 1.25rem auto;
+}
+
+.studies-group {
+  width: 100%;
+}
+
+.studies {
+  text-align: center;
+  margin-top: 1.25rem;
+}
+
+.studies h3 {
+  font-size: .75rem;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.studies p {
+  font-size: .75rem;
+  line-height: .9rem;
+  font-family: var(--lato-font);
+}
+
+@media (min-width: 992px) {
+  .skills .container {
+    display: flex;
+    padding: 3.125rem 1.875rem;
+  }
+
+  .skills-group {
+    width: 50%;
+  }
+
+  .title-content {
+    width: 100%;
+    margin-bottom: 5.125rem;
+  }
+
+  .title-content .title {
+    font-size: 1.5rem;
+  }
+
+  .programs {
+    width: 100%;
+    gap: 2.5rem;
+    max-width: 30.8562rem;
+    margin: 0 auto;
+  }
+
+  .studies-group {
+    width: 50%;
+  }
+
+  .studies {
+    margin: 0 auto;
+  }
+
+  .studies h3 {
+    font-size: 1rem;
+  }
+  
+  .studies p {
+    font-size: 1rem;
+    line-height: 1.2rem;
+  }
+}

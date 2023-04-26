@@ -1,5 +1,5 @@
 import { Navbar } from "../components/common";
-import { HeroSection } from "../section/HeroSection";
+import { HeroSection, SkillSection } from "../section";
 
 export const Home = () => {
   return (
@@ -8,6 +8,8 @@ export const Home = () => {
 
       <main className="main">
         <HeroSection />
+
+        <SkillSection />
       </main>
     </>
   )

@@ -27,3 +27,17 @@ h1, h2, h3, h4, h5, h6, p {
 .pointer {
   cursor: pointer;
 }
+
+.underline {
+  display: block;
+  width: 7.5rem;
+  height: .3125rem;
+  border-radius: .3125rem;
+  background-color: var(--green);
+}
+
+@media (min-width: 992px) {
+  .underline {
+    width: 8.4375rem;
+  }
+}
