@@ -1,13 +1,18 @@
+import { useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from 'yup';
+import Spinner from 'react-bootstrap/Spinner';
 
-import { Button } from "../components/common";
+import { Icon } from "../components/icons";
+import { Button, MyModal } from "../components/common";
 import { Input, Textarea } from "../components/form";
 
 import '../styles/sections/ContactSection.css';
-import { Icon } from "../components/icons";
 
 export const ContactSection = () => {
+  const [loading, setLoading] = useState(false);
+  const [modalSucces, setModalSucces] = useState(false);
+
   const formik = useFormik({
     initialValues: {
       fullName: '',
@@ -19,8 +24,31 @@ export const ContactSection = () => {
       email: Yup.string().email('Correo electronico invalido').required('El correo es requerido'),
       message: Yup.string().required('El mensaje es requerido'),
     }),
-    onSubmit: values => {
-      console.log(values)
+    onSubmit: (values) => {
+      setLoading(true);
+
+      fetch("https://formsubmit.co/ajax/lauram.1001@outlook.es", {
+        method: "POST",
+        headers: { 
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        },
+        body: JSON.stringify(values)
+      })
+        .then(response => response.json())
+        .then(() => {
+          formik.handleReset({
+            fullName: '',
+            email: '',
+            message: ''
+          });
+          setLoading(false);
+          setModalSucces(true);
+        })
+        .catch(error => {
+          console.log(error);
+          setLoading(false);
+        });
     },
   });
 
@@ -69,7 +97,12 @@ export const ContactSection = () => {
             <span className="error">{formik.errors.message}</span>
           ) : null}
 
-          <Button type="submit">Enviar</Button>
+          <Button
+            type="submit"
+            disabled={loading}
+          >
+            { !loading ? 'Enviar' : <Spinner animation="grow" variant="dark" size="sm" /> }            
+          </Button>
         </form>
 
         <div className="info-contact">
@@ -88,6 +121,11 @@ export const ContactSection = () => {
           </div>
         </div>
       </div>
+
+      <MyModal
+        showModal={modalSucces}
+        onCloseModal={() => setModalSucces(false)}
+      />
     </section>
   )
 }

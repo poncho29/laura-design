@@ -29,11 +29,16 @@ export const Navbar = () => {
         </figure>
 
         <ul className='social'>
-          <li><Icon size={20} iconName='MailIcon' className='pointer' /></li>
+          <a href="mailto:lauram.1001@outlook.es">
+            <li><Icon size={20} iconName='MailIcon' className='pointer' /></li>
+          </a>
           <li><Icon size={20} iconName='WhatsappIcon' className='pointer' /></li>
-          <li><Icon size={20} iconName='InstragramIcon' className='pointer' /></li>
-          <li><Icon size={28} iconName='BehindIncon' className='pointer' /></li>
-          <li><Icon size={20} iconName='LinkedinIcon' className='pointer' /></li>
+          <a href="https://www.behance.net/lauravmartine3" target='_blank' rel="noopener noreferrer">
+            <li><Icon size={28} iconName='BehindIncon' className='pointer' /></li>
+          </a>
+          <a href="https://www.linkedin.com/in/laura-valentina-martinez-guevara-b577ba25a/" target='_blank' rel="noopener noreferrer">
+            <li><Icon size={20} iconName='LinkedinIcon' className='pointer' /></li>
+          </a>
         </ul>
 
         <button className='menu-mobile'>

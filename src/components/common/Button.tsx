@@ -13,7 +13,7 @@ export const Button = (props: BasicButtonProps) => {
   const classNameProp = className ? className : ""
   return (
     <button {...props} className={`button-component ${variante} ${size} ${classNameProp}`}>
-      {children}
+      { children }
     </button>
   );
 };

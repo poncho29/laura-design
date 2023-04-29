@@ -1,7 +1,6 @@
 .footer {
   width: 100%;
   background-color: var(--green);
-  margin-top: 1rem;
 }
 
 .footer > .container {
@@ -29,7 +28,5 @@
 }
 
 .developer a {
-  color: var(--black);
   font-weight: 700;
-  text-decoration: none; 
 }

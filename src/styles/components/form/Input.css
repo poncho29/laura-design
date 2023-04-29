@@ -12,6 +12,9 @@
 .text-input {
   width: inherit;
   height: 2rem;
+  font-size: .75rem;
+  font-family: var(--lato-font);
+  padding: 0 1rem;
   border-radius: .5rem;
   border: 1px solid var(--black);
   margin-bottom: .5rem;

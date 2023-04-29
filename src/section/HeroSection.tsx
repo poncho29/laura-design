@@ -4,6 +4,7 @@ import { Button } from '../components/common';
 
 import '../styles/sections/HeroSection.css';
 import ImgProfile from '../assets/imgs/img-hero.png';
+import FileCV from '../assets/files/sebastian-cv.pdf';
 import ImgProfileDesktop from '../assets/imgs/img-hero-desktop.png';
 
 export const HeroSection = () => {
@@ -25,7 +26,9 @@ export const HeroSection = () => {
             <br/><br/>
             Disfruto de cada proceso de creacion y doy paso a oportunidades donde puedo explorar como profesional y crecer como persona.
           </p>
-          <Button type='button'>Descargar CV</Button>
+          <Button type='button'>
+            <a href={FileCV} download="Sebastian CV.pdf">Descargar CV</a>            
+          </Button>
         </div>
 
         <div className="image">

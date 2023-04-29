@@ -20,6 +20,7 @@
 .title-content .title {
   font-size: 1.125rem;;
   text-transform: uppercase;
+  margin-bottom: 0;
 }
 
 .programs {
@@ -66,7 +67,7 @@
 
   .title-content {
     width: 100%;
-    margin-bottom: 5.125rem;
+    margin-bottom: 3.875rem;
   }
 
   .title-content .title {
