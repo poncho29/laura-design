@@ -2,6 +2,7 @@ import { IconProps } from ".";
 
 export const InstragramIcon = ({
   size = 22,
+  height,
   className,
   pointerEvents,
   color = "black",
@@ -11,7 +12,7 @@ export const InstragramIcon = ({
     <svg
       fill={color}
       width={size}
-      height={size}
+      height={height ? height : size}
       className={className}
       pointerEvents={pointerEvents}
       onClick={onPress}

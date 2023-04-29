@@ -1,0 +1,35 @@
+.footer {
+  width: 100%;
+  background-color: var(--green);
+  margin-top: 1rem;
+}
+
+.footer > .container {
+  width: 100%;
+  padding: 1rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.icons-group {
+  width: inherit;
+  max-width: 12.875rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.developer {
+  font-size: .875rem;
+  font-family: var(--lato-font);
+  cursor: pointer;
+}
+
+.developer a {
+  color: var(--black);
+  font-weight: 700;
+  text-decoration: none; 
+}

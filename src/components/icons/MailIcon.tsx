@@ -2,6 +2,7 @@ import { IconProps } from ".";
 
 export const MailIcon = ({
   size = 22,
+  height,
   className,
   pointerEvents,
   color = "black",
@@ -9,9 +10,9 @@ export const MailIcon = ({
 }: IconProps) => {
   return (
     <svg
-    fill={color}
+     fill={color}
       width={size}
-      height={size}
+      height={height ? height : size}
       className={className}
       pointerEvents={pointerEvents}
       onClick={onPress}
