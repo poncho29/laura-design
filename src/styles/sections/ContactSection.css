@@ -1,0 +1,68 @@
+.contact {
+  width: 100%;
+}
+
+.contact > .container {
+  display: flex;
+  flex-direction: column;
+  padding: .875rem 1.875rem;
+}
+
+.title {
+  text-align: center;
+  font-size: 1.125rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  margin-bottom: 1.25rem  ;
+}
+
+.subtitle {
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 1.75rem;
+}
+
+.form .error {
+  color: red;
+  font-size: .75rem;
+}
+
+.form .button-component {
+  margin-top: 1.25rem;
+}
+
+/* INFO CONTACT */
+.info-contact {
+  width: 100%;
+}
+
+.options {
+  width: 100%;
+  display: flex;
+  margin-top: 1.5625rem;
+}
+
+.option-group {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .625rem;
+  font-size: .75rem;
+  font-family: var(--lato-font);
+}
+
+.location {
+  width: 50%;
+}
+
+.phone {
+  width: 50%;
+}

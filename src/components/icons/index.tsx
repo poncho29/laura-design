@@ -5,6 +5,8 @@ import { BehindIncon } from "./BehindIncon";
 import { WhatsappIcon } from "./WhatsappIcon";
 import { LinkedinIcon } from "./LinkedinIcon";
 import { InstragramIcon } from "./InstragramIcon";
+import { LocationIcon } from "./LocationIcon";
+import { PhoneIcon } from "./PhoneIcon";
 
 const IconComponents = {
   MenuIcon,
@@ -14,6 +16,8 @@ const IconComponents = {
   WhatsappIcon,
   LinkedinIcon,
   InstragramIcon,
+  LocationIcon,
+  PhoneIcon
 };
 
 type IconsComponentsType = typeof IconComponents;

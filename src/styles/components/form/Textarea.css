@@ -1,0 +1,18 @@
+.textarea-group {
+  width: 100%;
+  height: auto;
+}
+
+.textarea-group label {
+  font-size: .75rem;
+  font-family: var(--lato-font);
+  line-height: 1.875rem;
+}
+
+.textarea {
+  width: inherit;
+  height: 5rem;
+  border-radius: .5rem;
+  resize: none;
+  border: 1px solid var(--black);
+}
