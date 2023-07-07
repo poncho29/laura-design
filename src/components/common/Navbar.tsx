@@ -4,15 +4,18 @@ import useScreen from '../../hooks/useScreen';
 
 import '../../styles/components/common/Navbar.css';
 import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 
 export const Navbar = () => {
   const navigate = useNavigate();
   const { width } = useScreen();
 
+  const [toogleMenu, setToogleMenu] = useState(false);
+
   return (
     <header className='header'>
       <div className='container'>
-        <nav className='menu'>
+        <nav className={`menu ${toogleMenu && 'show-menu'}`}>
           <a href='#hero'>Sobre Mi</a>
           <a href='#projects'>Portafolio</a>
           <a href='#contact'>Contacto</a>
@@ -41,7 +44,7 @@ export const Navbar = () => {
           </a>
         </ul>
 
-        <button className='menu-mobile'>
+        <button className='menu-mobile' onClick={() => setToogleMenu(!toogleMenu)}>
           <Icon size={14} iconName='MenuIcon' className='pointer'/>
         </button>
       </div>

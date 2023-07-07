@@ -24,7 +24,7 @@ export const MyModal = ({ showModal, onCloseModal }: Props) => {
       </Modal.Body>
       <Modal.Footer className='d-flex justify-content-center'>
         <Button onClick={onCloseModal}>
-          Close
+          Cerrar
         </Button>
       </Modal.Footer>
     </Modal>
