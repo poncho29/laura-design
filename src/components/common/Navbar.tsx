@@ -32,7 +32,7 @@ export const Navbar = () => {
           <a href="mailto:lauram.1001@outlook.es">
             <li><Icon size={20} iconName='MailIcon' className='pointer' /></li>
           </a>
-          <li><Icon size={20} iconName='WhatsappIcon' className='pointer' /></li>
+          {/* <li><Icon size={20} iconName='WhatsappIcon' className='pointer' /></li> */}
           <a href="https://www.behance.net/lauravmartine3" target='_blank' rel="noopener noreferrer">
             <li><Icon size={28} iconName='BehindIncon' className='pointer' /></li>
           </a>

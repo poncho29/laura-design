@@ -28,16 +28,16 @@ export const ProjectSection = ({ id }: Props) => {
             onSelect={(k) => setKey(k!)}
           >
             <Tab eventKey="all" title="Todo">
-              <GridProjects projects={projects} />
+              <GridProjects projects={projects} area="all" />
             </Tab>
             <Tab eventKey="photography" title="Fotografía">
-              <GridProjects projects={projects} />
+              <GridProjects projects={projects}  area="photography" />
             </Tab>
             <Tab eventKey="branding" title="Branding">
-              <GridProjects projects={projects} />
+              <GridProjects projects={projects}  area="branding" />
             </Tab>
             <Tab eventKey="design" title="Diseño Web">
-              <GridProjects projects={projects} />
+              <GridProjects projects={projects} area="design" />
             </Tab>
           </Tabs>
         </div>

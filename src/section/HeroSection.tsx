@@ -4,7 +4,7 @@ import { Button } from '../components/common';
 
 import '../styles/sections/HeroSection.css';
 import ImgProfile from '../assets/imgs/img-hero.png';
-import FileCV from '../assets/files/sebastian-cv.pdf';
+import FileCV from '../assets/files/laura-martinez-cv.pdf';
 import ImgProfileDesktop from '../assets/imgs/img-hero-desktop.png';
 
 interface Props {
@@ -31,7 +31,7 @@ export const HeroSection = ({ id }: Props) => {
             Disfruto de cada proceso de creacion y doy paso a oportunidades donde puedo explorar como profesional y crecer como persona.
           </p>
           <Button type='button'>
-            <a href={FileCV} download="Sebastian CV.pdf">Descargar CV</a>            
+            <a href={FileCV} download="Laura Martínez CV.pdf">Descargar CV</a>            
           </Button>
         </div>
 

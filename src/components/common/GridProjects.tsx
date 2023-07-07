@@ -1,24 +1,38 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 
-import useScreen from "../../hooks/useScreen";
 import { Project } from "../../assets/data/projects";
 
 import '../../styles/components/common/GridProjects.css';
 
 type Props = {
+  area: string;
   projects: Project[],
 }
 
-export const GridProjects = ({ projects }: Props): JSX.Element => {
-  const { width } = useScreen();
+export const GridProjects = ({ area, projects }: Props): JSX.Element => {
   const [show, setShow] = useState('');
 
+  const openLink = (url: string) => {
+    let link = window.open(url, '_blank');
+    link && link.focus()
+  }
+
+  const filterProjects = useMemo(() => {
+    if (projects.length === 0) return [];
+
+    if (area === 'all') {
+      return projects
+    } else {
+      const data = projects.filter((project) => project.area === area)
+      return data;
+    }
+  }, [area])
 
   return (
     <div className='project-grid'>
-      {projects.length > 0 ?
-        projects.map((item: Project) => {
-          const { title, text, imgMobile, imgDesktop} = item;
+      {filterProjects?.length > 0 ?
+        filterProjects.map((item: Project) => {
+          const { title, img, url} = item;
 
           return (
             <div
@@ -26,17 +40,19 @@ export const GridProjects = ({ projects }: Props): JSX.Element => {
               className='project-group'
               onMouseEnter={() => setShow(title)}
               onMouseLeave={() => setShow('')}
+              onClick={() => openLink(url)}
             >
               <img
                 alt={title}
                 className="img-project"
-                src={width >= 992 ? imgDesktop : imgMobile}
+                src={img}
+
               />
               <div className={`
                 hover-project animate__animated animate__zoomIn ${(show == title) && 'active'}
               `}>
                 <h2>{title}</h2>
-                <p>{text}</p>
+                {/* <p>{text}</p> */}
               </div>
             </div>
           )

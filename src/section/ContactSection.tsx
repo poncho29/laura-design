@@ -110,7 +110,7 @@ export const ContactSection = ({ id }: Props) => {
         </form>
 
         <div className="info-contact">
-          <h2 className="subtitle">Información de contacto</h2>
+          {/* <h2 className="subtitle">Información de contacto</h2> */}
 
           <div className="options">
             <div className="option-group location">

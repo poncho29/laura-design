@@ -71,6 +71,13 @@
   font-family: var(--lato-font);
 }
 
+@media (min-width: 48rem) {
+  .option-group span {
+    font-size: 1rem;
+  }
+
+}
+
 .location {
   width: 50%;
 }

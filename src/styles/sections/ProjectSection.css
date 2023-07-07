@@ -1,7 +1,8 @@
 .projects {
   width: 100%;
-  background-color: var(--orange-ligth);
+  margin-top: 2rem;
   position: relative;
+  background-color: var(--orange-ligth);
 }
 
 .projects .container {
