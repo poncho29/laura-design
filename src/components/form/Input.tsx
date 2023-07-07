@@ -1,6 +1,6 @@
 import type { InputHTMLAttributes } from "react";
 
-import '../../styles/components/form/input.css';
+import '../../styles/components/form/Input.css';
 
 type InputNative = InputHTMLAttributes<HTMLInputElement>
 type CustomInput = {label?: string}
