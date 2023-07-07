@@ -7,7 +7,7 @@ export const Home = () => {
       <Navbar />
 
       <main className="main">
-        <HeroSection id="hero" />
+        <HeroSection id="hero"/>
 
         <SkillSection id="skills" />
 
