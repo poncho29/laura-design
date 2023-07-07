@@ -7,13 +7,13 @@ export const Home = () => {
       <Navbar />
 
       <main className="main">
-        <HeroSection />
+        <HeroSection id="hero" />
 
-        <SkillSection />
+        <SkillSection id="skills" />
 
-        <ProjectSection />
+        <ProjectSection id="projects" />
 
-        <ContactSection />
+        <ContactSection id="contact" />
 
         <Footer />
       </main>

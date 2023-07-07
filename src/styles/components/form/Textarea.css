@@ -19,3 +19,13 @@
   border-radius: .5rem;
   border: 1px solid var(--black);
 }
+
+@media (min-width: 48rem) {
+  .textarea-group label {
+    font-size: 1rem;
+  }
+
+  .textarea {
+    font-size: 1rem;
+  }
+}

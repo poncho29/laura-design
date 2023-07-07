@@ -9,7 +9,11 @@ import { Input, Textarea } from "../components/form";
 
 import '../styles/sections/ContactSection.css';
 
-export const ContactSection = () => {
+interface Props {
+  id: string;
+}
+
+export const ContactSection = ({ id }: Props) => {
   const [loading, setLoading] = useState(false);
   const [modalSucces, setModalSucces] = useState(false);
 
@@ -53,7 +57,7 @@ export const ContactSection = () => {
   });
 
   return (
-    <section className="contact">
+    <section className="contact" id={id}>
       <div className="container">
         <h2 className="title">Contacto</h2>
         <h3 className="subtitle">Envía tú mensaje</h3>

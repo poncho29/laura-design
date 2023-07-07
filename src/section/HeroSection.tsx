@@ -7,11 +7,15 @@ import ImgProfile from '../assets/imgs/img-hero.png';
 import FileCV from '../assets/files/sebastian-cv.pdf';
 import ImgProfileDesktop from '../assets/imgs/img-hero-desktop.png';
 
-export const HeroSection = () => {
+interface Props {
+  id: string;
+}
+
+export const HeroSection = ({ id }: Props) => {
   const { width } = useScreen();
 
   return (
-    <section className="hero">
+    <section className="hero" id={id}>
       <div className="container">
         <div className="information">
           <h1 className="text-upper">

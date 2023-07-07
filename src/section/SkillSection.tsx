@@ -28,11 +28,15 @@ const programs: Program[] = [
   {alt: 'logo figma', imgMobile: Figma, imgDesktop: FigmaDesktop},
 ]
 
-export const SkillSection = () => {
+interface Props {
+  id: string;
+}
+
+export const SkillSection = ({ id }: Props) => {
   const { width } = useScreen();
 
   return (
-    <section className="skills">
+    <section className="skills" id={id}>
       <div className="container">
         <div className='skills-group'>
           <div className="title-content">

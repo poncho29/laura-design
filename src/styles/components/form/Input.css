@@ -19,3 +19,13 @@
   border: 1px solid var(--black);
   margin-bottom: .5rem;
 }
+
+@media (min-width: 48rem) {
+  .input-custom-group label {
+    font-size: 1rem;
+  }
+
+  .text-input {
+    font-size: 1rem;
+  }
+}

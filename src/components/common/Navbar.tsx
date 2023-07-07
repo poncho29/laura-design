@@ -13,9 +13,9 @@ export const Navbar = () => {
     <header className='header'>
       <div className='container'>
         <nav className='menu'>
-          <a href='/'>Sobre Mi</a>
-          <a href='/portafolio'>Portafolio</a>
-          <a href='/contact'>Contacto</a>
+          <a href='#hero'>Sobre Mi</a>
+          <a href='#projects'>Portafolio</a>
+          <a href='#contact'>Contacto</a>
         </nav>
 
         <figure className='logo'>
