@@ -4,7 +4,7 @@ import { Button } from '../components/common';
 
 import '../styles/sections/HeroSection.css';
 import ImgProfile from '../assets/imgs/img-hero.png';
-import FileCV from '../assets/files/laura-martinez-cv.pdf';
+import FileCV from '../assets/files/CV-Laura-Martinez.pdf';
 import ImgProfileDesktop from '../assets/imgs/img-hero-desktop.png';
 
 interface Props {
