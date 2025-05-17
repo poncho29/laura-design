@@ -85,3 +85,7 @@
 .phone {
   width: 50%;
 }
+
+.phone a {
+  font-size: 1rem;
+}

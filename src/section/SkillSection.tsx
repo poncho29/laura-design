@@ -65,7 +65,7 @@ export const SkillSection = ({ id }: Props) => {
           <div className="studies">
             <h3>Diseño Gráfico</h3>
             <p>Universidad de investigación y desarrollo UDI</p>
-            <p>2020 - Actual</p>
+            <p>2020 - 2025</p>
           </div>
         </div>
       </div>

@@ -120,7 +120,7 @@ export const ContactSection = ({ id }: Props) => {
 
             <div className="option-group phone">
               <Icon iconName="PhoneIcon" />
-              <span>304 211 9022 - 315 636 5735</span>
+              <a href="tel:+573042119022">+57 304 211 9022</a>
             </div>
           </div>
         </div>
