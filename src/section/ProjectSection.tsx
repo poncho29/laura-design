@@ -12,7 +12,7 @@ interface Props {
 }
 
 export const ProjectSection = ({ id }: Props) => {
-  const [key, setKey] = useState('all');
+  const [key, setKey] = useState('design');
   
   return (
     <section className="projects" id={id}>
@@ -27,17 +27,14 @@ export const ProjectSection = ({ id }: Props) => {
             activeKey={key}
             onSelect={(k) => setKey(k!)}
           >
-            <Tab eventKey="all" title="Todo">
+            {/* <Tab eventKey="all" title="Todo">
               <GridProjects projects={projects} area="all" />
-            </Tab>
-            <Tab eventKey="photography" title="Fotografía">
-              <GridProjects projects={projects}  area="photography" />
+            </Tab> */}
+            <Tab eventKey="design" title="Diseño Web">
+              <GridProjects projects={projects} area="design" />
             </Tab>
             <Tab eventKey="branding" title="Branding">
               <GridProjects projects={projects}  area="branding" />
-            </Tab>
-            <Tab eventKey="design" title="Diseño Web">
-              <GridProjects projects={projects} area="design" />
             </Tab>
           </Tabs>
         </div>

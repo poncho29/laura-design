@@ -19,12 +19,12 @@ export const Footer = () => {
           </a>
         </div>
 
-        <span className='developer'>
+        {/* <span className='developer'>
           Desarrollado por {" "}
           <a href="https://poncho29.github.io/Portafolio/" target='_blank' rel="noopener noreferrer">
             Sebastian Meneses
           </a>          
-        </span>
+        </span> */}
       </div>
     </footer>
   )

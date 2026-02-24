@@ -25,8 +25,7 @@ export const HeroSection = ({ id }: Props) => {
           </h1>
           <h4 className="text-upper">Diseñadora Gráfica</h4>
           <p>
-            Soy estudiante de Diseño Gráfico de la UDI, actualmente trabajo en el desarrollo de proyectos personales y académicos,
-            mis intereses van dirigidos a el Diseño Web, fotografía y branding.
+            Con más de dos años de experiencia en la creación de identidades visuales, diseño páginas web, edición de videos y fotografía. Mi objetivo es transformar tus ideas en diseños visualmente atractivos y efectivos que conecten con tu audiencia.
             <br/><br/>
             Disfruto de cada proceso de creacion y doy paso a oportunidades donde puedo explorar como profesional y crecer como persona.
           </p>

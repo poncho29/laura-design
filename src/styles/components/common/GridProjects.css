@@ -29,6 +29,7 @@
 }
 
 .hover-project h2 {
+  font-size: 12px;
   text-transform: uppercase;
 }
 
@@ -40,10 +41,14 @@
   .project-grid {
     grid-template-columns: 1fr 1fr 1fr;
   }
+
+  .hover-project h2 {
+    font-size: 32px;
+  }
 }
 
 @media (min-width: 1440px) {
   .project-grid {
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
   }
 }

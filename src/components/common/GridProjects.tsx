@@ -1,6 +1,7 @@
 import { useMemo, useState } from "react";
 
 import { Project } from "../../assets/data/projects";
+import { ImageModal } from "./ImageModal";
 
 import '../../styles/components/common/GridProjects.css';
 
@@ -11,10 +12,19 @@ type Props = {
 
 export const GridProjects = ({ area, projects }: Props): JSX.Element => {
   const [show, setShow] = useState('');
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedImage, setSelectedImage] = useState('');
+  const [selectedTitle, setSelectedTitle] = useState('');
 
-  const openLink = (url: string) => {
-    let link = window.open(url, '_blank');
-    link && link.focus()
+  const handleProjectClick = (project: Project) => {
+    if (project.area === 'branding') {
+      setSelectedImage(project.img);
+      setSelectedTitle(project.title);
+      setIsModalOpen(true);
+    } else if (project.url) {
+      let link = window.open(project.url, '_blank');
+      link && link.focus();
+    }
   }
 
   const filterProjects = useMemo(() => {
@@ -29,36 +39,43 @@ export const GridProjects = ({ area, projects }: Props): JSX.Element => {
   }, [area])
 
   return (
-    <div className='project-grid'>
-      {filterProjects?.length > 0 ?
-        filterProjects.map((item: Project) => {
-          const { title, img, url} = item;
+    <>
+      <div className='project-grid'>
+        {filterProjects?.length > 0 ?
+          filterProjects.map((item: Project) => {
+            const { title, img} = item;
 
-          return (
-            <div
-              key={title}
-              className='project-group'
-              onMouseEnter={() => setShow(title)}
-              onMouseLeave={() => setShow('')}
-              onClick={() => openLink(url)}
-            >
-              <img
-                alt={title}
-                className="img-project"
-                src={img}
+            return (
+              <div
+                key={title}
+                className='project-group'
+                onMouseEnter={() => setShow(title)}
+                onMouseLeave={() => setShow('')}
+                onClick={() => handleProjectClick(item)}
+              >
+                <img
+                  alt={title}
+                  className="img-project"
+                  src={img}
 
-              />
-              <div className={`
-                hover-project animate__animated animate__zoomIn ${(show == title) && 'active'}
-              `}>
-                <h2>{title}</h2>
-                {/* <p>{text}</p> */}
+                />
+                <div className={`
+                  hover-project animate__animated animate__zoomIn ${(show == title) && 'active'}
+                `}>
+                  <h2 style={{ maxWidth: '90%', textAlign: 'center' }}>{title}</h2>
+                </div>
               </div>
-            </div>
-          )
-        }) :
-        <div>No projects</div>
-      }
-    </div>
+            )
+          }) :
+          <div>No projects</div>
+        }
+      </div>
+      <ImageModal 
+        isOpen={isModalOpen}
+        imageUrl={selectedImage}
+        title={selectedTitle}
+        onClose={() => setIsModalOpen(false)}
+      />
+    </>
   )
 }

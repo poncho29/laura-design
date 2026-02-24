@@ -1,20 +1,16 @@
-import Fotografia1 from '../imgs/fotografia/img-fotografia-1.jpg'
-import Fotografia2 from '../imgs/fotografia/img-fotografia-2.jpg'
-import Fotografia3 from '../imgs/fotografia/img-fotografia-3.jpg'
-import Fotografia4 from '../imgs/fotografia/img-fotografia-4.jpg'
-import Fotografia5 from '../imgs/fotografia/img-fotografia-5.jpg'
-import Fotografia6 from '../imgs/fotografia/img-fotografia-6.jpg'
-// import Fotografia7 from '../imgs/fotografia/img-fotografia-7.jpg'
-import Fotografia8 from '../imgs/fotografia/img-fotografia-8.jpg'
+import Branding1 from '../imgs/branding/legado.jpg';
+import Branding2 from '../imgs/branding/integra180.jpg';
+import Branding3 from '../imgs/branding/kiyomi.jpg';
+import Branding4 from '../imgs/branding/menu-online.jpg';
+import Branding5 from '../imgs/branding/merkemass.jpg';
+import Branding6 from '../imgs/branding/andy-postres.jpg';
 
-import Branding1 from '../imgs/branding/branding-1.jpg';
-import Branding2 from '../imgs/branding/branding-2.jpg';
-import Branding3 from '../imgs/branding/branding-3.jpg';
-import Branding4 from '../imgs/branding/branding-4.jpg';
-import Branding5 from '../imgs/branding/branding-5.jpg';
-
-import Design1 from '../imgs/design/img-design-1.jpg';
-import Design2 from '../imgs/design/img-design-2.jpg';
+import AntojappImg from '../imgs/design/antojapp.jpg';
+import FundacionVincentImg from '../imgs/design/fundacion-vincent.jpg';
+import MenuOnlineImg from '../imgs/design/menu-online.jpg';
+import RediseñoTrasHomeImg from '../imgs/design/rediseno.jpg';
+import LegadoImg from '../imgs/design/legado.jpg';
+import VaseprintImg from '../imgs/design/img-design-1.jpg';
 
 export type Project = {
   area:       string;
@@ -26,107 +22,94 @@ export type Project = {
 
 export const projects: Project[] = [
   {
-    title: 'Primera exposición',
-    text: 'Description',
-    area: 'photography',
-    img: Fotografia1,
-    url: 'https://drive.google.com/file/d/1abzb-SxPlgkvyjpgJOBQASJuB-D9nBB0/view?usp=drive_link'
-  },
-  {
-    title: 'Producto detalle',
-    text: 'Description',
-    area: 'photography',
-    img: Fotografia2,
-    url: 'https://drive.google.com/file/d/1pMwVNUUOnqJtXT-W24fA588uhmwoS5Ph/view?usp=drive_link'
-  },
-  {
-    title: 'Detalle',
-    text: 'Description',
-    area: 'photography',
-    img: Fotografia3,
-    url: 'https://drive.google.com/file/d/150IRu7eJTUSV8uzcu2Pu3hj8XDSUiAX0/view?usp=drive_link'
-  },
-  {
-    title: 'Producto enfocado',
-    text: 'Description',
-    area: 'photography',
-    img: Fotografia4,
-    url: 'https://drive.google.com/file/d/1mHu7WZtDipUrjipkEbEoLVNv9YfXUeBe/view?usp=drive_link'
-  },
-  {
-    title: 'Sombras',
-    text: 'Description',
-    area: 'photography',
-    img: Fotografia5,
-    url: 'https://drive.google.com/file/d/1kIdtg-00kKk22zGY6vBHqsBtovO2wUME/view?usp=drive_link'
-  },
-  {
-    title: 'Contraste',
-    text: 'Description',
-    area: 'photography',
-    img: Fotografia6,
-    url: 'https://drive.google.com/file/d/1U5HVQAbSqxOU86aUM_RkNHv7WOjl68Hu/view?usp=drive_link'
-  },
-  // {
-  //   title: 'project 7',
-  //   text: 'Description',
-  //   area: 'photography',
-  //   img: Fotografia7,
-  // },
-  {
-    title: 'Retrato',
-    text: 'Description',
-    area: 'photography',
-    img: Fotografia8,
-    url: 'https://drive.google.com/file/d/1qbrZmSrqNhcNm5gGMG-PhyvUGOMkY5PQ/view?usp=drive_link'
-  },
-  {
-    title: 'Selau',
+    title: 'Legado Inmobiliaria',
     text: 'Description',
     area: 'branding',
     img: Branding1,
-    url: 'https://drive.google.com/file/d/1ziwK8UIU1VL0z9hmORpTM4IctQgmesOF/view?usp=drive_link'
+    url: ''
   },
   {
-    title: 'Laura Martínez',
+    title: 'Integra 180',
     text: 'Description',
     area: 'branding',
     img: Branding2,
-    url: 'https://drive.google.com/file/d/1nYnvurSbx3ppRkOp6zrz_Jv4JuOqOW_Z/view?usp=drive_link'
+    url: ''
   },
   {
-    title: 'Papelería chispitas',
+    title: 'Kiyomi',
     text: 'Description',
     area: 'branding',
     img: Branding3,
-    url: 'https://drive.google.com/file/d/1f56-SJdkZCYChCv86S5kTTl8JHJWyVUC/view?usp=drive_link'
+    url: ''
   },
   {
-    title: 'Graphic code',
+    title: 'Menu Online',
     text: 'Description',
     area: 'branding',
     img: Branding4,
-    url: 'https://drive.google.com/file/d/18lZa8kPnchlEA_12_RfH3I2fUxWqY1K4/view?usp=drive_link'
+    url: ''
   },
   {
-    title: 'Trocha Verde',
+    title: 'Merkemass',
     text: 'Description',
     area: 'branding',
     img: Branding5,
-    url: 'https://drive.google.com/file/d/1zU87s5gxFXqYVZkS19AVjo-KBUj-o1HD/view?usp=drive_link'
+    url: ''
+  },
+  {
+    title: 'Andy Postres',
+    text: 'Description',
+    area: 'branding',
+    img: Branding6,
+    url: ''
+  },
+  {
+    title: 'UX/UI Legado Inmobiliaria',
+    text: 'Description',
+    area: 'design',
+    img: LegadoImg,
+    url: 'https://www.figma.com/design/4izgLpm68TTOokx83eCwPG/Legado?node-id=0-1&t=n8TPZVM5HaoALG68-1'
+  },
+  {
+    title: 'UX/UI Rediseño Tras Home',
+    text: 'Description',
+    area: 'design',
+    img: RediseñoTrasHomeImg,
+    url: 'https://www.figma.com/design/b89wxed6KQ70VAgJK5MIj2/Redise%C3%B1o-Tras-home?node-id=2002-2&t=p2ichNZl1WSTxsUf-1'
   },
   {
     title: 'UX/UI VASEprint',
     text: 'Description',
     area: 'design',
-    img: Design1,
+    img: VaseprintImg,
     url: 'https://www.figma.com/file/Xa8jrORVmYF5UYLqSBvHQZ/Tienda-Mobile-Vaseprint?type=design&node-id=303%3A226&mode=design&t=dFaSQGnTgub82jVT-1'
   },
   {
-    title: 'UX/UI Portafolio',
+    title: 'UX/UI MenuOnline',
     text: 'Description',
     area: 'design',
-    img: Design2,
-    url: 'https://www.figma.com/file/ePxNoxCn1jSAPXh7ptk6Za/Portafolio?type=design&node-id=0%3A1&mode=design&t=zjInzz0b3CqM26ZQ-1'
+    img: MenuOnlineImg,
+    url: 'https://www.figma.com/design/CNO281TSsZqxiHgMMtRA4d/Menu-online?node-id=2213-33&t=gemM9uvqpFptbHnP-1'
   },
+  {
+    title: 'UX/UI Fundación Vincent',
+    text: 'Description',
+    area: 'design',
+    img: FundacionVincentImg,
+    url: 'https://www.figma.com/design/tWirlGwoaaZu7oY6aiYkK0/Fundaci%C3%B3n-vincent?node-id=0-1&t=uym7dPPSH2Il2p1b-1'
+  },
+  {
+    title: 'UX/UI Antojapp',
+    text: 'Description',
+    area: 'design',
+    img: AntojappImg,
+    url: 'https://www.figma.com/design/JzpGp3MwZ6jc3W5aZXczyj/Antojapp?node-id=0-1&t=kOo8OAnNZ4xpCZnK-1'
+  },
+  // {
+  //   title: 'UX/UI Portafolio',
+  //   text: 'Description',
+  //   area: 'design',
+  //   img: Design2,
+  //   url: 'https://www.figma.com/file/ePxNoxCn1jSAPXh7ptk6Za/Portafolio?type=design&node-id=0%3A1&mode=design&t=zjInzz0b3CqM26ZQ-1'
+  // },
 ]
