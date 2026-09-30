@@ -1,56 +1,360 @@
+/* MOBILE: horizontal scroll-snap carousel, full-bleed to the page gutter */
 .project-grid {
-  width: 100%;
-  display: grid;
-  grid-gap: 1rem;
-  grid-template-columns: 1fr 1fr 1fr;
-}
-
-.project-group {
-  cursor: pointer;
+  --gutter: 1.25rem;
   position: relative;
-}
-
-.img-project {
-  width: 100%;
-  height: auto;
-  aspect-ratio: 1 / 1;
-  object-fit: cover;
-}
-
-.hover-project {
-  display: none;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  top: 0;
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  opacity: .7;
-  background-color: var(--orange-ligth);
-}
-
-.hover-project h3 {
-  font-size: 12px;
-  text-transform: uppercase;
-}
-
-.hover-project.active {
   display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  margin: 0 calc(var(--gutter) * -1);
+  padding: .5rem var(--gutter) 1.75rem;
+  scroll-padding: 0 var(--gutter);
+}
+
+.project-grid::-webkit-scrollbar {
+  display: none;
+}
+
+.project-grid > .pcard {
+  flex: 0 0 85%;
+  scroll-snap-align: start;
+}
+
+.project-grid:focus-visible {
+  outline: 3px solid var(--black);
+  outline-offset: -3px;
+  border-radius: 1rem;
+}
+
+/* Pagination dots (mobile only, rendered by the component) */
+.pgrid-dots {
+  display: flex;
+  justify-content: center;
+  margin-top: -.75rem;
+}
+
+.pgrid-dot {
+  position: relative;
+  width: 1.75rem;
+  height: 2.75rem;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.pgrid-dot::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: .5rem;
+  height: .5rem;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, .22);
+  transform: translate(-50%, -50%);
+  transition: width .25s ease, background-color .25s ease;
+}
+
+.pgrid-dot.is-active::before {
+  width: 1.5rem;
+  background: var(--black);
+}
+
+.pgrid-dot:focus-visible {
+  outline: 3px solid var(--black);
+  outline-offset: -3px;
+  border-radius: .5rem;
+}
+
+@media (min-width: 640px) {
+  .project-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    overflow: visible;
+    scroll-snap-type: none;
+    margin: 0;
+    padding: .5rem 0 0;
+  }
+
+  .project-grid > .pcard {
+    flex: none;
+  }
+
+  .pgrid-dots {
+    display: none;
+  }
 }
 
 @media (min-width: 992px) {
   .project-grid {
-    grid-template-columns: 1fr 1fr 1fr;
-  }
-
-  .hover-project h3 {
-    font-size: 32px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
   }
 }
 
-@media (min-width: 1440px) {
-  .project-grid {
-    grid-template-columns: 1fr 1fr 1fr;
+/* CARD */
+.pcard {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  background-color: var(--white);
+  border: 1px solid rgba(0, 0, 0, .06);
+  border-radius: 1.25rem;
+  overflow: hidden;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, .06), 0 10px 28px -14px rgba(0, 0, 0, .28);
+  transition: transform .3s ease, box-shadow .3s ease;
+}
+
+.pcard:hover,
+.pcard:focus-within {
+  transform: translateY(-6px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, .06), 0 24px 44px -18px rgba(0, 0, 0, .4);
+}
+
+/* MEDIA (clipped frame: the image scales inside, never outside) */
+.pcard-media {
+  position: relative;
+  overflow: hidden;
+  background: var(--secondary);
+  line-height: 0;
+}
+
+.pcard-img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  transition: transform .6s cubic-bezier(.2, .7, .2, 1);
+}
+
+/* OVERLAY (only on hover-capable devices) */
+.pcard-overlay {
+  display: none;
+}
+
+/* BODY */
+.pcard-body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  align-items: flex-start;
+  gap: .5rem;
+  padding: 1.125rem 1.25rem 1.25rem;
+}
+
+.pcard-chip {
+  display: inline-block;
+  padding: .2rem .7rem;
+  border-radius: 999px;
+  background: var(--green);
+  color: var(--black);
+  font-family: var(--lato-font);
+  font-size: .6875rem;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  line-height: 1.4;
+}
+
+.pcard--branding .pcard-chip {
+  background: var(--primary);
+}
+
+.pcard-title {
+  font-family: var(--spartan-font);
+  font-size: 1.375rem;
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -.005em;
+  color: var(--black);
+}
+
+.pcard-actions {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: .5rem;
+  width: 100%;
+  margin-top: auto;
+  padding-top: .75rem;
+}
+
+/* Touch row: equal-width buttons side by side */
+.pcard-actions .pcard-btn {
+  flex: 1 1 0;
+  min-width: 0;
+  gap: .5rem;
+  padding: 0 .5rem;
+  font-size: .9375rem;
+}
+
+.pcard-actions .pcard-ext {
+  display: none;
+}
+
+.pcard-btn svg {
+  flex: none;
+}
+
+.pcard-ext {
+  display: inline-flex;
+}
+
+/* BUTTONS */
+.pcard-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .5rem;
+  min-height: 2.75rem;
+  padding: 0 1rem;
+  border-radius: .75rem;
+  border: 1.5px solid var(--black);
+  font-family: var(--lato-font);
+  font-size: .875rem;
+  font-weight: 700;
+  line-height: 1;
+  white-space: nowrap;
+  cursor: pointer;
+  color: var(--black);
+  transition: background-color .2s ease, box-shadow .2s ease, transform .2s ease, color .2s ease;
+}
+
+.pcard-btn--primary {
+  background: var(--green);
+  border-color: var(--green);
+}
+
+.pcard-btn--primary:hover {
+  background: var(--white);
+  border-color: var(--green);
+  box-shadow: 0 0 0 3px var(--green);
+  color: var(--black);
+}
+
+.pcard-btn--ghost {
+  background: transparent;
+}
+
+.pcard-btn--ghost:hover {
+  background: var(--secondary);
+  color: var(--black);
+}
+
+.pcard-btn:active {
+  transform: scale(.98);
+}
+
+.pcard-btn:focus-visible {
+  outline: 3px solid var(--black);
+  outline-offset: 3px;
+}
+
+/* DESKTOP: actions live inside the image overlay, the row under the title goes away */
+@media (hover: hover) and (pointer: fine) {
+  .pcard-actions {
+    display: none;
+  }
+
+  .pcard-body {
+    padding-bottom: 1.25rem;
+  }
+
+  .pcard-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: .75rem;
+    line-height: 1;
+    background: rgba(20, 20, 20, .5);
+    -webkit-backdrop-filter: blur(3px);
+    backdrop-filter: blur(3px);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .3s ease;
+  }
+
+  /* Buttons stay in the tab order while hidden (opacity, not display/visibility),
+     so :focus-within reveals the overlay for keyboard users. */
+  .pcard-media:hover .pcard-overlay,
+  .pcard-media:focus-within .pcard-overlay,
+  .pcard:focus-within .pcard-overlay {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .pcard:hover .pcard-img,
+  .pcard:focus-within .pcard-img {
+    transform: scale(1.06);
+  }
+
+  .pcard-overlay .pcard-btn {
+    min-width: 11.5rem;
+    min-height: 3rem;
+    font-size: .9375rem;
+    border-radius: 999px;
+    transform: translateY(.5rem);
+    transition: transform .35s ease, background-color .2s ease, box-shadow .2s ease, color .2s ease;
+  }
+
+  .pcard-media:hover .pcard-overlay .pcard-btn,
+  .pcard:focus-within .pcard-overlay .pcard-btn {
+    transform: translateY(0);
+  }
+
+  .pcard-overlay .pcard-btn--primary {
+    background: var(--white);
+    border-color: var(--white);
+    box-shadow: 0 8px 20px -8px rgba(0, 0, 0, .5);
+  }
+
+  .pcard-overlay .pcard-btn--primary:hover {
+    background: var(--green);
+    border-color: var(--green);
+    box-shadow: 0 8px 20px -8px rgba(0, 0, 0, .5);
+  }
+
+  .pcard-overlay .pcard-btn--ghost {
+    color: var(--white);
+    border-color: rgba(255, 255, 255, .85);
+    background: rgba(255, 255, 255, .12);
+  }
+
+  .pcard-overlay .pcard-btn--ghost:hover {
+    background: var(--white);
+    color: var(--black);
+  }
+
+  .pcard-overlay .pcard-btn:focus-visible {
+    outline-color: var(--white);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pcard,
+  .pcard-img,
+  .pcard-overlay,
+  .pcard-overlay .pcard-btn,
+  .pcard-btn {
+    transition: none;
+  }
+
+  .pcard:hover,
+  .pcard:focus-within {
+    transform: none;
+  }
+
+  .pcard:hover .pcard-img,
+  .pcard:focus-within .pcard-img,
+  .pcard-overlay .pcard-btn {
+    transform: none !important;
   }
 }

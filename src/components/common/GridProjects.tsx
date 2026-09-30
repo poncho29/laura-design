@@ -1,31 +1,30 @@
-import { useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
 import { Project } from "../../assets/data/projects";
-import { ImageModal } from "./ImageModal";
+import { Icon } from "../icons";
+import useScreen from "../../hooks/useScreen";
+import { ProjectLightbox } from "./ProjectLightbox";
 
 import '../../styles/components/common/GridProjects.css';
 
 type Props = {
   area: string;
   projects: Project[],
+  /** Changes when the parent tab changes: the carousel goes back to the first card. */
+  resetKey?: string;
+  /** Accessible name of the mobile carousel region. */
+  label?: string;
 }
 
-export const GridProjects = ({ area, projects }: Props): JSX.Element => {
-  const [show, setShow] = useState('');
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedImage, setSelectedImage] = useState('');
-  const [selectedTitle, setSelectedTitle] = useState('');
+// The "UX/UI" prefix is shown as a category chip, so it is dropped from the visible title.
+const displayTitle = (title: string) => title.replace(/^UX\/UI\s+/i, '');
 
-  const handleProjectClick = (project: Project) => {
-    if (project.area === 'branding') {
-      setSelectedImage(project.imgFull ?? project.img);
-      setSelectedTitle(project.title);
-      setIsModalOpen(true);
-    } else if (project.url) {
-      let link = window.open(project.url, '_blank');
-      link && link.focus();
-    }
-  }
+export const GridProjects = ({ area, projects, resetKey, label }: Props): JSX.Element => {
+  const { width } = useScreen();
+  const isCarousel = width < 640;
+  const gridRef = useRef<HTMLDivElement>(null);
+  const [current, setCurrent] = useState(0);
+  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
 
   const filterProjects = useMemo(() => {
     if (projects.length === 0) return [];
@@ -36,48 +35,161 @@ export const GridProjects = ({ area, projects }: Props): JSX.Element => {
       const data = projects.filter((project) => project.area === area)
       return data;
     }
-  }, [area])
+  }, [area, projects])
+
+  // Current card = the one whose left edge is closest to the scroll position
+  const updateCurrent = useCallback(() => {
+    const grid = gridRef.current;
+    if (!grid) return;
+    const cards = Array.from(grid.children) as HTMLElement[];
+    if (cards.length === 0) return;
+    const atEnd = grid.scrollLeft + grid.clientWidth >= grid.scrollWidth - 4;
+    if (atEnd) return setCurrent(cards.length - 1);
+    let best = 0;
+    let min = Infinity;
+    cards.forEach((card, i) => {
+      const d = Math.abs(card.offsetLeft - grid.scrollLeft - grid.clientLeft - parseFloat(getComputedStyle(grid).paddingLeft));
+      if (d < min) { min = d; best = i; }
+    });
+    setCurrent(best);
+  }, []);
+
+  useEffect(() => {
+    const grid = gridRef.current;
+    if (!grid || !isCarousel) return;
+    let raf = 0;
+    const onScroll = () => {
+      cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(updateCurrent);
+    };
+    grid.addEventListener('scroll', onScroll, { passive: true });
+    return () => {
+      cancelAnimationFrame(raf);
+      grid.removeEventListener('scroll', onScroll);
+    };
+  }, [isCarousel, updateCurrent]);
+
+  // Tab switch: back to the first card
+  useEffect(() => {
+    const grid = gridRef.current;
+    if (grid) grid.scrollLeft = 0;
+    setCurrent(0);
+  }, [resetKey, area]);
+
+  const goTo = (index: number) => {
+    const grid = gridRef.current;
+    const card = grid?.children[index] as HTMLElement | undefined;
+    if (!grid || !card) return;
+    const gutter = parseFloat(getComputedStyle(grid).paddingLeft);
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    grid.scrollTo({ left: card.offsetLeft - gutter, behavior: reduce ? 'auto' : 'smooth' });
+  };
 
   return (
     <>
-      <div className='project-grid'>
+      <div
+        ref={gridRef}
+        className='project-grid'
+        {...(isCarousel ? { role: 'region', 'aria-roledescription': 'carrusel', 'aria-label': label, tabIndex: 0 } : {})}
+      >
         {filterProjects?.length > 0 ?
           filterProjects.map((item: Project) => {
-            const { title, img} = item;
+            const { title, img, url, web } = item;
+            const isBranding = item.area === 'branding';
+            const name = displayTitle(title);
 
+            const actions = (
+              <>
+                {isBranding ? (
+                  <button
+                    type="button"
+                    className="pcard-btn pcard-btn--primary"
+                    aria-haspopup="dialog"
+                    aria-label={`Ver proyecto ${name} en grande`}
+                    onClick={() => setLightboxIndex(filterProjects.indexOf(item))}
+                  >
+                    <Icon iconName="ExpandIcon" size={18} height={18} color="currentColor" />
+                    Ver proyecto
+                  </button>
+                ) : (
+                  <a
+                    className="pcard-btn pcard-btn--primary"
+                    href={url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`Ver ${name} en Figma (se abre en una pestaña nueva)`}
+                  >
+                    <Icon iconName="FigmaIcon" size={18} height={18} color="currentColor" />
+                    Ver en Figma
+                    <span className="pcard-ext"><Icon iconName="ExternalLinkIcon" size={14} height={14} color="currentColor" /></span>
+                  </a>
+                )}
+
+                {web && (
+                  <a
+                    className="pcard-btn pcard-btn--ghost"
+                    href={web}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`Ver sitio web de ${name} (se abre en una pestaña nueva)`}
+                  >
+                    <Icon iconName="GlobeIcon" size={18} height={18} color="currentColor" />
+                    Ver sitio web
+                    <span className="pcard-ext"><Icon iconName="ExternalLinkIcon" size={14} height={14} color="currentColor" /></span>
+                  </a>
+                )}
+              </>
+            );
+
+            /* The same actions render in two places, and CSS shows only one of them:
+               - hover-capable devices: inside the image overlay (revealed on hover / focus-within)
+               - touch devices: in a row under the title
+               The hidden one is display:none, so screen readers never get duplicates. */
             return (
-              <div
-                key={title}
-                className='project-group'
-                onMouseEnter={() => setShow(title)}
-                onMouseLeave={() => setShow('')}
-                onClick={() => handleProjectClick(item)}
-              >
-                <img
-                  alt={title}
-                  className="img-project"
-                  src={img}
-                  width={800}
-                  height={800}
-                  loading="lazy"
-                  decoding="async"
-                />
-                <div className={`
-                  hover-project animate__animated animate__zoomIn ${(show == title) && 'active'}
-                `}>
-                  <h3 style={{ maxWidth: '90%', textAlign: 'center' }}>{title}</h3>
+              <article key={`${item.area}-${title}`} className={`pcard pcard--${item.area}`}>
+                <div className="pcard-media">
+                  <img
+                    alt={isBranding ? `Identidad de marca ${name}` : `Diseño UX/UI ${name}`}
+                    className="pcard-img"
+                    src={img}
+                    width={800}
+                    height={800}
+                    loading="lazy"
+                    decoding="async"
+                  />
+                  <div className="pcard-overlay">{actions}</div>
                 </div>
-              </div>
+
+                <div className="pcard-body">
+                  <span className="pcard-chip">{isBranding ? 'Branding' : 'UX/UI'}</span>
+                  <h3 className="pcard-title">{name}</h3>
+                  <div className="pcard-actions">{actions}</div>
+                </div>
+              </article>
             )
           }) :
           <div>No projects</div>
         }
       </div>
-      <ImageModal 
-        isOpen={isModalOpen}
-        imageUrl={selectedImage}
-        title={selectedTitle}
-        onClose={() => setIsModalOpen(false)}
+      {isCarousel && filterProjects.length > 1 && (
+        <div className="pgrid-dots">
+          {filterProjects.map((item, i) => (
+            <button
+              key={item.title}
+              type="button"
+              className={`pgrid-dot${i === current ? ' is-active' : ''}`}
+              aria-label={`Ir al proyecto ${i + 1} de ${filterProjects.length}: ${displayTitle(item.title)}`}
+              aria-current={i === current ? 'true' : undefined}
+              onClick={() => goTo(i)}
+            />
+          ))}
+        </div>
+      )}
+      <ProjectLightbox
+        items={filterProjects}
+        index={lightboxIndex}
+        onIndexChange={setLightboxIndex}
+        onClose={() => setLightboxIndex(null)}
       />
     </>
   )

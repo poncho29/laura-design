@@ -1,135 +1,407 @@
 .header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
   width: 100%;
-  position: relative;
+  isolation: isolate;
+  transition: box-shadow .3s ease;
 }
 
-.header > .container {
+/* The blur lives on a pseudo-element: backdrop-filter on the header itself would make it the
+   containing block of the fixed mobile drawer. */
+.header::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: rgba(255, 255, 255, .72);
+  -webkit-backdrop-filter: saturate(180%) blur(14px);
+  backdrop-filter: saturate(180%) blur(14px);
+  border-bottom: 1px solid transparent;
+  transition: background-color .3s ease, border-color .3s ease;
+}
+
+.header.is-scrolled::before,
+.header.menu-open::before {
+  background: rgba(255, 255, 255, .88);
+  border-bottom-color: rgba(0, 0, 0, .08);
+}
+
+.header.is-scrolled {
+  box-shadow: 0 6px 24px -14px rgba(0, 0, 0, .3);
+}
+
+.header .header-bar {
+  position: relative;
+  z-index: 2;
   width: 100%;
-  height: 44px;
+  height: 4rem;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
-}
-
-.menu {
-  width: 100%;
-  flex-direction: column;
-  position: absolute;
-  top: 44px;
-  left: 0;
-  opacity: 0;
-  background-color: var(--white);
-  transition: opacity 0.3s ease-in;
-  pointer-events: none;
-}
-
-.menu a {
-  display: inline-block;
-  width: inherit;
-  text-align: center;
-  padding: .5rem 0;
-}
-
-.menu a:hover {
-  background-color: var(--orange-ligth);
-}
-
-.menu.show-menu {
-  opacity: 1;
-  pointer-events: all;
+  transition: height .3s ease;
 }
 
 .logo {
+  position: relative;
+  z-index: 2;
   display: flex;
   align-items: center;
   margin: 0;
+  border-radius: .5rem;
 }
 
 .social {
   display: none;
 }
 
-.menu-mobile {
+/* ---- Hamburger -> close ---- */
+.menu-toggle {
+  position: relative;
+  z-index: 2;
   display: flex;
   align-items: center;
   justify-content: center;
-  border: none;
-  background-color: transparent;
+  width: 2.75rem;
+  height: 2.75rem;
+  margin-right: -.6875rem;
+  border: 0;
+  border-radius: .75rem;
+  background: transparent;
+  cursor: pointer;
 }
 
-@media (min-width: 768px) {
-  .header > .container {
-    height: 96px;
+.menu-toggle-bars {
+  position: relative;
+  width: 1.375rem;
+  height: 1rem;
+}
+
+.menu-toggle-bars span {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--black);
+  transition: transform .35s cubic-bezier(.7, 0, .2, 1), opacity .2s ease, top .35s cubic-bezier(.7, 0, .2, 1);
+}
+
+.menu-toggle-bars span:nth-child(1) { top: 0; }
+.menu-toggle-bars span:nth-child(2) { top: calc(50% - 1px); }
+.menu-toggle-bars span:nth-child(3) { top: calc(100% - 2px); }
+
+.menu-open .menu-toggle-bars span:nth-child(1) { top: calc(50% - 1px); transform: rotate(45deg); }
+.menu-open .menu-toggle-bars span:nth-child(2) { opacity: 0; }
+.menu-open .menu-toggle-bars span:nth-child(3) { top: calc(50% - 1px); transform: rotate(-45deg); }
+
+.menu-toggle:focus-visible,
+.logo:focus-visible,
+.menu a:focus-visible,
+.social a:focus-visible {
+  outline: 3px solid var(--black);
+  outline-offset: 3px;
+}
+
+/* ---- Mobile: full-screen drawer ---- */
+.menu {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: .5rem;
+  padding: 5rem 1.5rem 2rem;
+  background: var(--secondary);
+  visibility: hidden;
+  opacity: 0;
+  clip-path: circle(0 at calc(100% - 1.9375rem) 2rem);
+  transition: clip-path .6s cubic-bezier(.7, 0, .2, 1), opacity .3s ease, visibility 0s linear .6s;
+}
+
+.menu-open .menu {
+  visibility: visible;
+  opacity: 1;
+  clip-path: circle(150% at calc(100% - 1.9375rem) 2rem);
+  transition: clip-path .6s cubic-bezier(.7, 0, .2, 1), opacity .2s ease, visibility 0s;
+}
+
+.menu > a {
+  white-space: nowrap;
+  padding: .5rem 1rem;
+  font-family: var(--spartan-font);
+  font-size: clamp(2rem, 9vw, 2.75rem);
+  font-weight: 600;
+  line-height: 1.1;
+  text-transform: uppercase;
+  color: var(--black);
+  border-bottom: 4px solid transparent;
+  opacity: 0;
+  transform: translateY(1.25rem);
+  transition: opacity .4s ease, transform .4s ease, border-color .2s ease;
+}
+
+.menu > a:hover {
+  border-bottom-color: var(--green);
+}
+
+/* Scroll-spy: muted links, the current one is black with a sage underline (drawer) */
+.menu > a {
+  color: #555;
+}
+
+.menu > a {
+  position: relative;
+}
+
+.menu > a[aria-current] {
+  color: var(--black);
+}
+
+/* Drawer: the active underline fills left to right when the drawer opens */
+.menu > a[aria-current]::after {
+  content: "";
+  position: absolute;
+  left: 1rem;
+  right: 1rem;
+  bottom: -4px;
+  height: 4px;
+  border-radius: 4px;
+  background: var(--green);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform .45s ease-out .45s;
+}
+
+.menu-open .menu > a[aria-current]::after {
+  transform: scaleX(1);
+}
+
+.menu-indicator {
+  display: none;
+}
+
+@keyframes nav-fill {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+.menu-social {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  opacity: 0;
+  transform: translateY(1.25rem);
+  transition: opacity .4s ease, transform .4s ease;
+}
+
+.menu-social a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  background: var(--white);
+}
+
+.menu-open .menu > a,
+.menu-open .menu-social {
+  opacity: 1;
+  transform: none;
+  transition-delay: calc(.2s + var(--i, 0) * .07s);
+}
+
+/* Tablet: keep hamburger + drawer, just give the bar a little more room */
+@media (min-width: 640px) {
+  .header .header-bar {
+    height: 4.5rem;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  .menu-toggle {
+    margin-right: -.6875rem;
+  }
+}
+
+/* Full bar: 3 links + logo + 4 icons only fit comfortably from 1024px up */
+@media (min-width: 1024px) {
+  .header .header-bar {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    height: 5.5rem;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+    transition: height .3s ease;
+  }
+
+  .header.is-scrolled .header-bar {
+    height: 4.25rem;
+  }
+
+  .logo svg {
+    width: 8.6875rem;
+    height: auto;
+    transition: width .3s ease;
+  }
+
+  .header.is-scrolled .logo svg {
+    width: 7.25rem;
   }
 
   .menu {
-    width: 40%;
-    display: flex;
+    position: static;
+    inset: auto;
+    width: auto;
+    justify-self: start;
     flex-direction: row;
-    gap: 1rem;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 1.5rem;
+    padding: 0;
+    background: transparent;
+    visibility: visible;
     opacity: 1;
-    position: initial;
-    pointer-events: all;
+    clip-path: none;
+    transition: none;
   }
 
-  .menu a {
+  .menu > a {
+    transition: color .25s ease, border-color .2s ease;
     display: flex;
     align-items: center;
-    justify-content: center;
     height: 2.5rem;
     padding: 0;
-    color: var(--black);
-    font-size: .875rem;
-    line-height: 1.035rem;
-    text-decoration: none;
-    text-transform: uppercase;    
-    border-bottom: 4px solid transparent;
+    white-space: nowrap;
+    font-family: var(--lato-font);
+    font-size: .9375rem;
+    font-weight: 700;
+    letter-spacing: .04em;
+    line-height: 1;
+    opacity: 1;
+    transform: none;
   }
 
-  .menu a:hover {
-    color: var(--black);
-    background-color: var(--white);
-    border-bottom: 4px solid var(--primary);
+  .menu > a:hover {
+    border-bottom-color: var(--primary);
+  }
+
+  /* On desktop the underline is a single sage indicator that slides between links */
+  .menu {
+    position: relative;
+  }
+
+  .menu > a[aria-current]::after {
+    display: none;
+  }
+
+  .menu-indicator {
+    display: block;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 4px;
+    width: var(--ind-w, 0);
+    transform: translateX(var(--ind-x, 0));
+    opacity: 0;
+  }
+
+  /* Loading-bar fill: replays on every change (the span is re-mounted with the active link) */
+  .menu-indicator-fill {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border-radius: 4px;
+    background: var(--green);
+    transform-origin: left center;
+    animation: nav-fill .35s ease-out .12s both;
+  }
+
+  .menu.has-indicator .menu-indicator {
+    opacity: 1;
+    transition: transform .25s ease, width .25s ease;
+  }
+
+  .menu-social {
+    display: none;
   }
 
   .logo {
     justify-content: center;
-    width: 30%;
-  }
-
-  .logo img {
-    height: 2.625rem;
   }
 
   .social {
     display: flex;
     align-items: center;
-    justify-content: end;
-    gap: 1rem;
-    width: 40%;
+    justify-content: flex-end;
+    gap: .25rem;
+    justify-self: end;
     padding: 0;
-    margin-bottom: 0;
-  }
-  
-  .social li {
+    margin: 0;
     list-style: none;
   }
 
-  .menu-mobile {
+  .social a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    border-radius: 50%;
+    transition: background-color .2s ease;
+  }
+
+  .social a:hover {
+    background-color: var(--secondary);
+  }
+
+  .menu-toggle {
     display: none;
   }
 }
 
-@media (min-width: 992px) {
+@media (min-width: 1200px) {
   .menu {
-    gap: 1.5rem;
+    gap: 2rem;
   }
 
-  .menu a {
-    font-size: 1.125rem;
+  .menu > a {
+    font-size: 1.0625rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .header,
+  .header::before,
+  .header-bar,
+  .logo svg,
+  .menu,
+  .menu-open .menu,
+  .menu > a,
+  .menu-social,
+  .menu-toggle-bars span,
+  .menu-indicator,
+  .menu > a,
+  .menu > a[aria-current]::after,
+  .social a {
+    transition: none !important;
   }
 
-  .logo img {
-    height: 3.125rem;
+  .menu {
+    clip-path: none;
+  }
+
+  .menu-open .menu > a,
+  .menu-open .menu-social {
+    transition-delay: 0s;
+  }
+
+  .menu-indicator-fill {
+    animation: none;
   }
 }

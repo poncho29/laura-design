@@ -1,0 +1,29 @@
+import { IconProps } from ".";
+
+export const PenNibIcon = ({
+  size = 22,
+  height,
+  className,
+  pointerEvents,
+  color = "black",
+}: IconProps) => {
+  return (
+    <svg
+      aria-hidden="true"
+      focusable="false"
+      fill="none"
+      stroke={color}
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      width={size}
+      height={height ? height : size}
+      className={className}
+      pointerEvents={pointerEvents}
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path d="M12 19l7-7 3 3-7 7-3-3z" /><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z" /><path d="M2 2l7.6 7.6" /><circle cx="11" cy="11" r="2" />
+    </svg>
+  );
+};

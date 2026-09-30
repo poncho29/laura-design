@@ -22,3 +22,11 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# SDD / agent artifacts
+.atl/
+
+# Environment variables
+.env
+.env.*
+!.env.example

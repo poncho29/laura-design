@@ -1,4 +1,4 @@
 export * from './HeroSection';
-export * from './SkillSection';
+export * from './ProfileSection';
 export * from './ContactSection';
 export * from './ProjectSection';

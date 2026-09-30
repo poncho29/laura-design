@@ -7,6 +7,8 @@
   --orange-ligth: #FFF9EF;
 
   --content: 1200px;
+  --section-pad-y: clamp(3.5rem, 6vw, 6rem);
+  --title-gap: clamp(1.5rem, 1rem + 2vw, 2.5rem);
   --lato-font: 'Lato', sans-serif;
   --spartan-font: 'League Spartan', sans-serif;
 }
@@ -47,5 +49,26 @@ a:hover {
 @media (min-width: 992px) {
   .underline {
     width: 8.4375rem;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Sticky header offset for in-page anchors */
+section[id] {
+  scroll-margin-top: 5rem;
+}
+
+@media (min-width: 768px) {
+  section[id] {
+    scroll-margin-top: 5.5rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
   }
 }

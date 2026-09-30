@@ -1,31 +1,105 @@
-.input-custom-group {
+/* Shared field styles (Input + Textarea) */
+.field {
   width: 100%;
-  height: auto;
+  margin-bottom: 1.125rem;
 }
 
-.input-custom-group label {
-  font-size: .75rem;
+.field-label {
+  display: block;
+  margin-bottom: .375rem;
   font-family: var(--lato-font);
-  line-height: 1.875rem;
+  font-size: .875rem;
+  font-weight: 700;
+  color: var(--black);
+}
+
+.field-required {
+  color: #B3261E;
+}
+
+.field-optional {
+  font-weight: 400;
+  color: #5c5c5c;
+}
+
+.field-control {
+  display: block;
+  width: 100%;
+  font-family: var(--lato-font);
+  font-size: 1rem; /* 16px avoids iOS zoom-on-focus */
+  color: var(--black);
+  background-color: var(--white);
+  border: 1.5px solid #8a7f70;
+  border-radius: .75rem;
+  padding: 0 1rem;
+  transition: border-color .2s ease, box-shadow .2s ease;
+}
+
+.field-control::placeholder {
+  color: #6e6e6e;
+  opacity: 1;
+}
+
+.field-control:hover {
+  border-color: var(--black);
+}
+
+.field-control:focus-visible {
+  outline: none;
+  border-color: var(--black);
+  box-shadow: 0 0 0 4px var(--green);
+}
+
+.field-control.is-invalid {
+  border-color: #B3261E;
+}
+
+.field-control.is-invalid:focus-visible {
+  box-shadow: 0 0 0 4px rgba(179, 38, 30, .2);
+}
+
+.field-hint,
+.field-error {
+  margin-top: .375rem;
+  font-family: var(--lato-font);
+  font-size: .8125rem;
+  line-height: 1.35;
+}
+
+.field-hint {
+  color: #5c5c5c;
+}
+
+.field-error {
+  display: flex;
+  align-items: flex-start;
+  gap: .375rem;
+  color: #B3261E;
+  font-weight: 700;
+}
+
+.field-error::before {
+  content: "!";
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1rem;
+  height: 1rem;
+  margin-top: .05rem;
+  border-radius: 50%;
+  background: #B3261E;
+  color: var(--white);
+  font-size: .7rem;
+  line-height: 1;
 }
 
 .text-input {
-  width: inherit;
-  height: 2rem;
-  font-size: .75rem;
-  font-family: var(--lato-font);
-  padding: 0 1rem;
-  border-radius: .5rem;
-  border: 1px solid var(--black);
-  margin-bottom: .5rem;
+  height: 3rem;
 }
 
-@media (min-width: 48rem) {
-  .input-custom-group label {
-    font-size: 1rem;
-  }
-
-  .text-input {
-    font-size: 1rem;
+@media (prefers-reduced-motion: reduce) {
+  .field-control {
+    transition: none;
   }
 }

@@ -25,6 +25,7 @@ export type Project = {
   img:        string;
   imgFull?:   string;
   url:        string;
+  web?:       string;
 }
 
 export const projects: Project[] = [
@@ -34,7 +35,8 @@ export const projects: Project[] = [
     area: 'branding',
     img: Branding1,
     imgFull: Branding1Full,
-    url: ''
+    url: '',
+    web: 'https://legadogrupoic.com/'
   },
   {
     title: 'Integra 180',
@@ -58,7 +60,8 @@ export const projects: Project[] = [
     area: 'branding',
     img: Branding4,
     imgFull: Branding4Full,
-    url: ''
+    url: '',
+    web: 'https://vamenu.net/'
   },
   {
     title: 'Merkemass',
@@ -81,7 +84,8 @@ export const projects: Project[] = [
     text: 'Description',
     area: 'design',
     img: LegadoImg,
-    url: 'https://www.figma.com/design/4izgLpm68TTOokx83eCwPG/Legado?node-id=0-1&t=n8TPZVM5HaoALG68-1'
+    url: 'https://www.figma.com/design/4izgLpm68TTOokx83eCwPG/Legado?node-id=0-1&t=n8TPZVM5HaoALG68-1',
+    web: 'https://legadogrupoic.com/'
   },
   {
     title: 'UX/UI Rediseño Tras Home',
@@ -95,14 +99,16 @@ export const projects: Project[] = [
     text: 'Description',
     area: 'design',
     img: VaseprintImg,
-    url: 'https://www.figma.com/file/Xa8jrORVmYF5UYLqSBvHQZ/Tienda-Mobile-Vaseprint?type=design&node-id=303%3A226&mode=design&t=dFaSQGnTgub82jVT-1'
+    url: 'https://www.figma.com/file/Xa8jrORVmYF5UYLqSBvHQZ/Tienda-Mobile-Vaseprint?type=design&node-id=303%3A226&mode=design&t=dFaSQGnTgub82jVT-1',
+    web: 'https://vaseprint.net/'
   },
   {
     title: 'UX/UI MenuOnline',
     text: 'Description',
     area: 'design',
     img: MenuOnlineImg,
-    url: 'https://www.figma.com/design/CNO281TSsZqxiHgMMtRA4d/Menu-online?node-id=2213-33&t=gemM9uvqpFptbHnP-1'
+    url: 'https://www.figma.com/design/CNO281TSsZqxiHgMMtRA4d/Menu-online?node-id=2213-33&t=gemM9uvqpFptbHnP-1',
+    web: 'https://vamenu.net/'
   },
   {
     title: 'UX/UI Fundación Vincent',

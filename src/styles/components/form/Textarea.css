@@ -1,31 +1,22 @@
-.textarea-group {
-  width: 100%;
-  height: auto;
-}
-
-.textarea-group label {
-  font-size: .75rem;
-  font-family: var(--lato-font);
-  line-height: 1.875rem;
-}
-
 .textarea {
-  width: inherit;
-  resize: none;
-  height: 5rem;
-  font-size: .75rem;
-  font-family: var(--lato-font);
-  padding: 0.5rem 1rem;
-  border-radius: .5rem;
-  border: 1px solid var(--black);
+  resize: vertical;
+  min-height: 8rem;
+  padding: .75rem 1rem;
+  line-height: 1.5;
 }
 
-@media (min-width: 48rem) {
-  .textarea-group label {
-    font-size: 1rem;
-  }
+.field-meta {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+}
 
-  .textarea {
-    font-size: 1rem;
-  }
+.field-counter {
+  flex: none;
+  margin-top: .375rem;
+  font-family: var(--lato-font);
+  font-size: .8125rem;
+  color: #5c5c5c;
+  font-variant-numeric: tabular-nums;
 }

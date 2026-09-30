@@ -1,5 +1,5 @@
 import { Footer, Navbar } from "../components/common";
-import { ContactSection, HeroSection, ProjectSection, SkillSection } from "../section";
+import { ContactSection, HeroSection, ProjectSection, ProfileSection } from "../section";
 
 export const Home = () => {
   return (
@@ -9,14 +9,14 @@ export const Home = () => {
       <main className="main">
         <HeroSection id="hero"/>
 
-        <SkillSection id="skills" />
+        <ProfileSection id="profile" />
 
         <ProjectSection id="projects" />
 
         <ContactSection id="contact" />
-
-        <Footer />
       </main>
+
+      <Footer />
     </>
   )
 }

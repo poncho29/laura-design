@@ -7,6 +7,14 @@ import { LinkedinIcon } from "./LinkedinIcon";
 import { InstragramIcon } from "./InstragramIcon";
 import { LocationIcon } from "./LocationIcon";
 import { PhoneIcon } from "./PhoneIcon";
+import { FigmaIcon } from "./FigmaIcon";
+import { ExternalLinkIcon } from "./ExternalLinkIcon";
+import { ExpandIcon } from "./ExpandIcon";
+import { GlobeIcon } from "./GlobeIcon";
+import { PenNibIcon } from "./PenNibIcon";
+import { BrowserIcon } from "./BrowserIcon";
+import { DownloadIcon } from "./DownloadIcon";
+import { ArrowRightIcon } from "./ArrowRightIcon";
 
 const IconComponents = {
   MenuIcon,
@@ -17,7 +25,15 @@ const IconComponents = {
   LinkedinIcon,
   InstragramIcon,
   LocationIcon,
-  PhoneIcon
+  PhoneIcon,
+  FigmaIcon,
+  ExternalLinkIcon,
+  ExpandIcon,
+  GlobeIcon,
+  PenNibIcon,
+  BrowserIcon,
+  DownloadIcon,
+  ArrowRightIcon
 };
 
 type IconsComponentsType = typeof IconComponents;
