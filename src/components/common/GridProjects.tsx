@@ -19,6 +19,18 @@ type Props = {
 // The "UX/UI" prefix is shown as a category chip, so it is dropped from the visible title.
 const displayTitle = (title: string) => title.replace(/^UX\/UI\s+/i, '');
 
+// Rendered card width per breakpoint (mirrors GridProjects.css + Bootstrap's .container max-widths):
+// mobile carousel cards are 85% of the padded grid; 2 columns from 640px, 3 from 992px.
+const CARD_IMG_SIZES = [
+  '(min-width: 1400px) 405px',
+  '(min-width: 1200px) 345px',
+  '(min-width: 992px) 285px',
+  '(min-width: 768px) 328px',
+  '(min-width: 640px) 238px',
+  '(min-width: 576px) 425px',
+  'calc(85vw - 34px)',
+].join(', ');
+
 export const GridProjects = ({ area, projects, resetKey, label }: Props): JSX.Element => {
   const { width } = useScreen();
   const isCarousel = width < 640;
@@ -94,7 +106,7 @@ export const GridProjects = ({ area, projects, resetKey, label }: Props): JSX.El
       >
         {filterProjects?.length > 0 ?
           filterProjects.map((item: Project) => {
-            const { title, img, url, web } = item;
+            const { title, img, imgSm, url, web } = item;
             const isBranding = item.area === 'branding';
             const name = displayTitle(title);
 
@@ -105,7 +117,7 @@ export const GridProjects = ({ area, projects, resetKey, label }: Props): JSX.El
                     type="button"
                     className="pcard-btn pcard-btn--primary"
                     aria-haspopup="dialog"
-                    aria-label={`Ver proyecto ${name} en grande`}
+                    aria-label={`Ver proyecto: ${name} (en grande)`}
                     onClick={() => setLightboxIndex(filterProjects.indexOf(item))}
                   >
                     <Icon iconName="ExpandIcon" size={18} height={18} color="currentColor" />
@@ -117,7 +129,7 @@ export const GridProjects = ({ area, projects, resetKey, label }: Props): JSX.El
                     href={url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    aria-label={`Ver ${name} en Figma (se abre en una pestaña nueva)`}
+                    aria-label={`Ver en Figma: ${name} (se abre en una pestaña nueva)`}
                   >
                     <Icon iconName="FigmaIcon" size={18} height={18} color="currentColor" />
                     Ver en Figma
@@ -131,7 +143,7 @@ export const GridProjects = ({ area, projects, resetKey, label }: Props): JSX.El
                     href={web}
                     target="_blank"
                     rel="noopener noreferrer"
-                    aria-label={`Ver sitio web de ${name} (se abre en una pestaña nueva)`}
+                    aria-label={`Ver sitio web: ${name} (se abre en una pestaña nueva)`}
                   >
                     <Icon iconName="GlobeIcon" size={18} height={18} color="currentColor" />
                     Ver sitio web
@@ -152,6 +164,7 @@ export const GridProjects = ({ area, projects, resetKey, label }: Props): JSX.El
                     alt={isBranding ? `Identidad de marca ${name}` : `Diseño UX/UI ${name}`}
                     className="pcard-img"
                     src={img}
+                    {...(imgSm ? { srcSet: `${imgSm} 400w, ${img} 800w`, sizes: CARD_IMG_SIZES } : {})}
                     width={800}
                     height={800}
                     loading="lazy"

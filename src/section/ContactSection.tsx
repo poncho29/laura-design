@@ -140,11 +140,12 @@ export const ContactSection = ({ id }: Props) => {
                   href="https://wa.me/573042119022"
                   target="_blank"
                   rel="noopener noreferrer"
-                  aria-label="WhatsApp: +57 304 211 9022 (se abre en una pestaña nueva)"
+                  aria-label="WhatsApp +57 304 211 9022 (se abre en una pestaña nueva)"
                 >
                   <span className="contact-item-icon"><Icon iconName="WhatsappIcon" size={18} height={18} /></span>
                   <span className="contact-item-text">
                     <span className="contact-item-label">WhatsApp</span>
+                    {' '}
                     <span className="contact-item-value">+57 304 211 9022</span>
                   </span>
                 </a>

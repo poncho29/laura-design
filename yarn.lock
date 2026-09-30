@@ -327,6 +327,16 @@
   resolved "https://registry.yarnpkg.com/@esbuild/win32-x64/-/win32-x64-0.17.17.tgz#2b577b976e6844106715bbe0cdc57cd1528063f9"
   integrity sha512-FNZw7H3aqhF9OyRQbDDnzUApDXfC1N6fgBhkqEO2jvYCJ+DxMTfZVqg3AX0R1khg1wHTBRD5SdcibSJ+XF6bFg==
 
+"@fontsource/lato@^5.3.0":
+  version "5.3.0"
+  resolved "https://registry.yarnpkg.com/@fontsource/lato/-/lato-5.3.0.tgz#c1c8c66aca07c4cd9299bdfe1ba679683465d1c3"
+  integrity sha512-0WhF/4rhrw+ErIyneKvhHn2YAl+xf8GDtllgOgOzDmeaSlLQtjpChXaQOpWhG2BchQW0WJy2zLV12Hdg0ndOMw==
+
+"@fontsource/league-spartan@^5.3.0":
+  version "5.3.0"
+  resolved "https://registry.yarnpkg.com/@fontsource/league-spartan/-/league-spartan-5.3.0.tgz#ed24b620db5d5c00c6a0ec1e9ee2b061e2655c96"
+  integrity sha512-cPDmpL1HwYNN85yWkw567EhVkz9j+jGTRqSeoDQtcyg7jyW1S7etCNUcRy1eIfaggl7ZudMAD3oXGLosxdu1Dw==
+
 "@jridgewell/gen-mapping@^0.3.0", "@jridgewell/gen-mapping@^0.3.2":
   version "0.3.3"
   resolved "https://registry.npmjs.org/@jridgewell/gen-mapping/-/gen-mapping-0.3.3.tgz"

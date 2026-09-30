@@ -63,10 +63,16 @@
     }
     </script>
 
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;600;700&family=League+Spartan:wght@600&display=swap" rel="stylesheet">
+    <!-- Hero (LCP) image: stable public/ URLs so it can be preloaded before the JS bundle runs. Keep srcset/sizes in sync with HeroSection.tsx -->
+    <link
+      rel="preload"
+      as="image"
+      type="image/webp"
+      fetchpriority="high"
+      href="/img/hero-733.webp"
+      imagesrcset="/img/hero-480.webp 480w, /img/hero-733.webp 733w"
+      imagesizes="(min-width: 992px) min(627px, max(507px, 44.8vw)), 463px"
+    />
   </head>
   <body>
     <noscript>Laura Martínez — Diseñadora Gráfica. Activa JavaScript para ver el portafolio.</noscript>

@@ -2,7 +2,6 @@ import { Fragment } from 'react';
 
 import '../styles/sections/HeroSection.css';
 import FileCV from '../assets/files/CV-Laura-Martinez.pdf';
-import ImgProfileDesktop from '../assets/imgs/img-hero-desktop.webp';
 
 import { Icon } from '../components/icons';
 
@@ -16,6 +15,10 @@ const NAME_WORDS = ['Laura', 'Martínez'];
 const LETTER_COUNT = NAME_WORDS.join('').length;
 let letterIndex = 0;
 const nameLetters = NAME_WORDS.map((word) => [...word].map((char) => ({ char, i: letterIndex++ })));
+
+// Kept in sync with the <link rel="preload"> in index.html. The <img> is 186.5% of the portrait frame
+// (15.5rem on mobile, clamp(17rem, 24vw, 21rem) from 992px).
+const HERO_IMG_SIZES = '(min-width: 992px) min(627px, max(507px, 44.8vw)), 463px';
 
 const specialties = ['UX/UI', 'Diseño web', 'Branding', 'Edición de video'];
 
@@ -103,7 +106,9 @@ export const HeroSection = ({ id }: Props) => {
 
             <figure className="portrait-frame">
               <img
-                src={ImgProfileDesktop}
+                src="/img/hero-733.webp"
+                srcSet="/img/hero-480.webp 480w, /img/hero-733.webp 733w"
+                sizes={HERO_IMG_SIZES}
                 alt="Retrato de Laura Martínez, diseñadora UX/UI y gráfica"
                 width={733}
                 height={501}
