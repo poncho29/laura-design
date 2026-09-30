@@ -1,0 +1,15 @@
+{
+  "name": "Laura Martínez | Diseñadora Gráfica",
+  "short_name": "Laura Martínez",
+  "description": "Portafolio de Laura Martínez, diseñadora gráfica: branding, diseño web UX/UI, edición de video y fotografía.",
+  "lang": "es",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "theme_color": "#F2D0A4",
+  "background_color": "#FFECCC",
+  "icons": [
+    { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ]
+}

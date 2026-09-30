@@ -5,7 +5,7 @@ import '../styles/sections/SkillSection.css';
 import Figma from '../assets/imgs/img-figma.png';
 import Desing from '../assets/imgs/img-design.jpg';
 import Photoshopt from '../assets/imgs/img-photoshop.jpg';
-import Ligthroom from '../assets/imgs/img-ilustrator.jpg';
+import Ligthroom from '../assets/imgs/img-ligthroom.jpg';
 import Ilustrator from '../assets/imgs/img-ilustrator.jpg';
 
 import FigmaDesktop from '../assets/imgs/img-figma-desktop.png';
@@ -49,6 +49,8 @@ export const SkillSection = ({ id }: Props) => {
               <li key={item.alt}>
                 <img
                   alt={item.alt}
+                  loading="lazy"
+                  decoding="async"
                   src={width >= 992 ? item.imgDesktop : item.imgMobile}
                 />
               </li>

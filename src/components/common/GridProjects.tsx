@@ -18,7 +18,7 @@ export const GridProjects = ({ area, projects }: Props): JSX.Element => {
 
   const handleProjectClick = (project: Project) => {
     if (project.area === 'branding') {
-      setSelectedImage(project.img);
+      setSelectedImage(project.imgFull ?? project.img);
       setSelectedTitle(project.title);
       setIsModalOpen(true);
     } else if (project.url) {
@@ -57,12 +57,15 @@ export const GridProjects = ({ area, projects }: Props): JSX.Element => {
                   alt={title}
                   className="img-project"
                   src={img}
-
+                  width={800}
+                  height={800}
+                  loading="lazy"
+                  decoding="async"
                 />
                 <div className={`
                   hover-project animate__animated animate__zoomIn ${(show == title) && 'active'}
                 `}>
-                  <h2 style={{ maxWidth: '90%', textAlign: 'center' }}>{title}</h2>
+                  <h3 style={{ maxWidth: '90%', textAlign: 'center' }}>{title}</h3>
                 </div>
               </div>
             )

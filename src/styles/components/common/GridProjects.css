@@ -12,6 +12,8 @@
 
 .img-project {
   width: 100%;
+  height: auto;
+  aspect-ratio: 1 / 1;
   object-fit: cover;
 }
 
@@ -28,7 +30,7 @@
   background-color: var(--orange-ligth);
 }
 
-.hover-project h2 {
+.hover-project h3 {
   font-size: 12px;
   text-transform: uppercase;
 }
@@ -42,7 +44,7 @@
     grid-template-columns: 1fr 1fr 1fr;
   }
 
-  .hover-project h2 {
+  .hover-project h3 {
     font-size: 32px;
   }
 }

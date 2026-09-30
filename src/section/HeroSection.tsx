@@ -3,9 +3,9 @@ import useScreen from '../hooks/useScreen';
 import { Button } from '../components/common';
 
 import '../styles/sections/HeroSection.css';
-import ImgProfile from '../assets/imgs/img-hero.png';
+import ImgProfile from '../assets/imgs/img-hero.webp';
 import FileCV from '../assets/files/CV-Laura-Martinez.pdf';
-import ImgProfileDesktop from '../assets/imgs/img-hero-desktop.png';
+import ImgProfileDesktop from '../assets/imgs/img-hero-desktop.webp';
 
 interface Props {
   id: string;
@@ -13,6 +13,7 @@ interface Props {
 
 export const HeroSection = ({ id }: Props) => {
   const { width } = useScreen();
+  const isDesktop = width > 992;
 
   return (
     <section className="hero" id={id}>
@@ -36,7 +37,14 @@ export const HeroSection = ({ id }: Props) => {
 
         <div className="image">
           <figure className="image-content">
-            <img src={width > 992 ? ImgProfileDesktop : ImgProfile} alt="Imagen de laura" />
+            <img
+              src={isDesktop ? ImgProfileDesktop : ImgProfile}
+              alt="Retrato de Laura Martínez, diseñadora gráfica"
+              width={isDesktop ? 733 : 304}
+              height={isDesktop ? 501 : 217}
+              decoding="async"
+              {...{ fetchpriority: 'high' }}
+            />
           </figure>
         </div>        
       </div>

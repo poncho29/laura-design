@@ -1,22 +1,29 @@
-import Branding1 from '../imgs/branding/legado.jpg';
-import Branding2 from '../imgs/branding/integra180.jpg';
-import Branding3 from '../imgs/branding/kiyomi.jpg';
-import Branding4 from '../imgs/branding/menu-online.jpg';
-import Branding5 from '../imgs/branding/merkemass.jpg';
-import Branding6 from '../imgs/branding/andy-postres.jpg';
+import Branding1 from '../imgs/branding/legado.webp';
+import Branding1Full from '../imgs/branding/legado-full.webp';
+import Branding2 from '../imgs/branding/integra180.webp';
+import Branding2Full from '../imgs/branding/integra180-full.webp';
+import Branding3 from '../imgs/branding/kiyomi.webp';
+import Branding3Full from '../imgs/branding/kiyomi-full.webp';
+import Branding4 from '../imgs/branding/menu-online.webp';
+import Branding4Full from '../imgs/branding/menu-online-full.webp';
+import Branding5 from '../imgs/branding/merkemass.webp';
+import Branding5Full from '../imgs/branding/merkemass-full.webp';
+import Branding6 from '../imgs/branding/andy-postres.webp';
+import Branding6Full from '../imgs/branding/andy-postres-full.webp';
 
-import AntojappImg from '../imgs/design/antojapp.jpg';
-import FundacionVincentImg from '../imgs/design/fundacion-vincent.jpg';
-import MenuOnlineImg from '../imgs/design/menu-online.jpg';
-import RediseñoTrasHomeImg from '../imgs/design/rediseno.jpg';
-import LegadoImg from '../imgs/design/legado.jpg';
-import VaseprintImg from '../imgs/design/img-design-1.jpg';
+import AntojappImg from '../imgs/design/antojapp.webp';
+import FundacionVincentImg from '../imgs/design/fundacion-vincent.webp';
+import MenuOnlineImg from '../imgs/design/menu-online.webp';
+import RediseñoTrasHomeImg from '../imgs/design/rediseno.webp';
+import LegadoImg from '../imgs/design/legado.webp';
+import VaseprintImg from '../imgs/design/img-design-1.webp';
 
 export type Project = {
   area:       string;
   text:       string;
   title:      string;
   img:        string;
+  imgFull?:   string;
   url:        string;
 }
 
@@ -26,6 +33,7 @@ export const projects: Project[] = [
     text: 'Description',
     area: 'branding',
     img: Branding1,
+    imgFull: Branding1Full,
     url: ''
   },
   {
@@ -33,6 +41,7 @@ export const projects: Project[] = [
     text: 'Description',
     area: 'branding',
     img: Branding2,
+    imgFull: Branding2Full,
     url: ''
   },
   {
@@ -40,6 +49,7 @@ export const projects: Project[] = [
     text: 'Description',
     area: 'branding',
     img: Branding3,
+    imgFull: Branding3Full,
     url: ''
   },
   {
@@ -47,6 +57,7 @@ export const projects: Project[] = [
     text: 'Description',
     area: 'branding',
     img: Branding4,
+    imgFull: Branding4Full,
     url: ''
   },
   {
@@ -54,6 +65,7 @@ export const projects: Project[] = [
     text: 'Description',
     area: 'branding',
     img: Branding5,
+    imgFull: Branding5Full,
     url: ''
   },
   {
@@ -61,6 +73,7 @@ export const projects: Project[] = [
     text: 'Description',
     area: 'branding',
     img: Branding6,
+    imgFull: Branding6Full,
     url: ''
   },
   {
